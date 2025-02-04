@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Aumento de Preço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Aumento de Preço da Mercadoria</h2>
+        <label for="nome">Informe o nome da mercadoria:</label>
+        <input type="text" id="nome" placeholder="Digite o nome da mercadoria" />
+
+        <label for="preco">Informe o preço da mercadoria:</label>
+        <input type="number" id="preco" placeholder="Digite o preço da mercadoria" />
+
+        <button onclick="calcularAumento()">Calcular Aumento</button>
+
+        <div id="resultado" class="result" style="display: none;">
+            <p id="nomeMercadoria"></p>
+            <p id="novoPreco"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularAumento() {
+            let nome = document.getElementById("nome").value;
+            let preco = parseFloat(document.getElementById("preco").value);
+            
+            if (nome === "" || isNaN(preco) || preco <= 0) {
+                alert("Por favor, insira um nome e um preço válidos.");
+                return;
+            }
+
+            let aumento = 0;
+            if (preco < 1000) {
+                aumento = 0.05;
+            } else {
+                aumento = 0.07;
+            }
+
+            let novoPreco = preco + (preco * aumento);
+
+            document.getElementById("nomeMercadoria").innerHTML = `Nome da Mercadoria: ${nome}`;
+            document.getElementById("novoPreco").innerHTML = `Novo Preço: R$ ${novoPreco.toFixed(2)}`;
+
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
