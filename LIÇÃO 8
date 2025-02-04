@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Média do Aluno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Calcular Média do Aluno</h2>
+        <label for="nota1">Nota 1:</label>
+        <input type="number" id="nota1" placeholder="Digite a primeira nota" step="0.1" />
+
+        <label for="nota2">Nota 2:</label>
+        <input type="number" id="nota2" placeholder="Digite a segunda nota" step="0.1" />
+
+        <label for="nota3">Nota 3:</label>
+        <input type="number" id="nota3" placeholder="Digite a terceira nota" step="0.1" />
+
+        <button onclick="calcularMedia()">Calcular Média</button>
+
+        <div id="resultado" class="result" style="display: none;">
+            <p id="mediaAluno"></p>
+            <p id="situacaoAluno"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularMedia() {
+            // Obter os valores das notas
+            let nota1 = parseFloat(document.getElementById("nota1").value);
+            let nota2 = parseFloat(document.getElementById("nota2").value);
+            let nota3 = parseFloat(document.getElementById("nota3").value);
+
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+                alert("Por favor, insira todas as notas corretamente.");
+                return;
+            }
+
+            let media = (nota1 + nota2 + nota3) / 3;
+
+            let situacao = '';
+            if (media >= 6) {
+                situacao = 'Aprovado';
+            } else if (media >= 4) {
+                situacao = 'Recuperação';
+            } else {
+                situacao = 'Reprovado';
+            }
+
+            document.getElementById("mediaAluno").innerHTML = `Média do Aluno: ${media.toFixed(2)}`;
+            document.getElementById("situacaoAluno").innerHTML = `Situação: ${situacao}`;
+
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
