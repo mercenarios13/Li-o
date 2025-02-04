@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoção de Desconto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border: 1px solid #b3d9ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Calculadora de Desconto</h2>
+        <label for="preco">Preço da Peça (R$):</label>
+        <input type="number" id="preco" placeholder="Digite o preço da peça" step="0.01" />
+
+        <label for="peca">Escolha a Peça:</label>
+        <select id="peca">
+            <option value="camisa">Camisa</option>
+            <option value="bermuda">Bermuda</option>
+            <option value="calca">Calça</option>
+        </select>
+
+        <button onclick="calcularDesconto()">Calcular Desconto</button>
+
+        <div id="resultado" class="result" style="display: none;">
+            <p id="valorFinal"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularDesconto() {
+            let preco = parseFloat(document.getElementById("preco").value);
+            let peca = document.getElementById("peca").value;
+
+            // Validar se o preço foi informado
+            if (isNaN(preco) || preco <= 0) {
+                alert("Por favor, insira um valor válido para o preço.");
+                return;
+            }
+
+            let desconto = 0;
+
+            // Determinar o desconto baseado na peça
+            if (peca === "camisa") {
+                desconto = 0.20; // 20% de desconto
+            } else if (peca === "bermuda") {
+                desconto = 0.10; // 10% de desconto
+            } else if (peca === "calca") {
+                desconto = 0.15; // 15% de desconto
+            }
+
+            // Calcular o valor do desconto e o valor final
+            let valorDesconto = preco * desconto;
+            let valorFinal = preco - valorDesconto;
+
+            // Exibir o resultado
+            document.getElementById("valorFinal").innerHTML = `Preço Final: R$ ${valorFinal.toFixed(2)} (Desconto de R$ ${valorDesconto.toFixed(2)})`;
+
+            // Exibir o resultado
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
