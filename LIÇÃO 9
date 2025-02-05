@@ -96,7 +96,6 @@
             let preco = parseFloat(document.getElementById("preco").value);
             let peca = document.getElementById("peca").value;
 
-            // Validar se o preço foi informado
             if (isNaN(preco) || preco <= 0) {
                 alert("Por favor, insira um valor válido para o preço.");
                 return;
@@ -104,23 +103,19 @@
 
             let desconto = 0;
 
-            // Determinar o desconto baseado na peça
             if (peca === "camisa") {
-                desconto = 0.20; // 20% de desconto
+                desconto = 0.20; 
             } else if (peca === "bermuda") {
-                desconto = 0.10; // 10% de desconto
+                desconto = 0.10; 
             } else if (peca === "calca") {
-                desconto = 0.15; // 15% de desconto
+                desconto = 0.15; 
             }
 
-            // Calcular o valor do desconto e o valor final
             let valorDesconto = preco * desconto;
             let valorFinal = preco - valorDesconto;
 
-            // Exibir o resultado
             document.getElementById("valorFinal").innerHTML = `Preço Final: R$ ${valorFinal.toFixed(2)} (Desconto de R$ ${valorDesconto.toFixed(2)})`;
 
-            // Exibir o resultado
             document.getElementById("resultado").style.display = "block";
         }
     </script>
